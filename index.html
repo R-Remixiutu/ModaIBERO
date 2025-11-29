@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModaIBERO | Experiencia Completa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- NAVEGACIÓN -->
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" onclick="showPage('home')" class="text-2xl font-bold text-indigo-600 tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-shirt"></i> ModaIBERO
+            </a>
+            
+            <div class="flex items-center gap-6">
+                <!-- Links de navegación rápida -->
+                <div class="hidden md:flex gap-4 text-sm font-semibold text-gray-600">
+                    <a href="#" onclick="showPage('home')" class="hover:text-indigo-600">Inicio</a>
+                    <a href="#campanas" onclick="showPage('home')" class="hover:text-indigo-600">Videos</a>
+                    <a href="#" onclick="showPage('login')" class="hover:text-indigo-600">Mi Cuenta</a>
+                </div>
+
+                <!-- Botón Carrito -->
+                <button onclick="toggleCart()" class="relative text-gray-700 hover:text-indigo-600 transition">
+                    <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL (Aquí cambiamos las vistas) -->
+    <div id="main-container" class="mt-16 flex-grow">
+        
+        <!-- VISTA 1: INICIO (HOME) -->
+        <div id="view-home" class="fade-in">
+            <!-- Hero -->
+            <header class="relative bg-gray-900 text-white h-96 flex items-center justify-center overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                <div class="relative z-10 text-center px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">¡Nueva Colección 2025!</h1>
+                    <button onclick="document.getElementById('productos-section').scrollIntoView({behavior: 'smooth'})" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition">
+                        Ver Catálogo
+                    </button>
+                </div>
+            </header>
+
+            <!-- Sección Multimedia (Videos) -->
+            <section id="campanas" class="py-12 bg-white">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-8">Nuestras Campañas</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="rounded-xl overflow-hidden shadow-lg h-64 md:h-80 relative bg-black group">
+                            <!-- Video embebido de YouTube (responsive) -->
+                            <div class="absolute inset-0">
+                                <iframe
+                                    class="w-full h-full"
+                                    src="https://www.youtube.com/embed/A8n9wf0R1xo"
+                                    title="Fashion Week 2025 — ModaIBERO"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="font-bold text-xl">Fashion Week 2025</h3>
+                                <p class="text-sm">Mira el detrás de cámaras</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Inspiración en ModaIBERO</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                ModaIBERO es inspirada en una innovadora tendencia IBERO, para poder innovar 
+                                y proveer productos con la mejor calidad.
+                            </p>
+                            <a href="https://www.youtube.com/" class="inline-block text-indigo-600 font-bold hover:underline">Ver más videos en nuestro canal <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de Productos -->
+            <section id="productos-section" class="container mx-auto px-6 py-16">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Tendencias</h2>
+                <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- JS rellena esto -->
+                </div>
+            </section>
+        </div>
+
+        <!-- VISTA 2: DETALLES DEL PRODUCTO -->
+        <div id="view-details" class="hidden fade-in container mx-auto px-6 py-10">
+            <button onclick="showPage('home')" class="mb-6 text-gray-500 hover:text-indigo-600 flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Volver a la tienda
+            </button>
+            
+            <div id="detail-content" class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                <!-- JS rellena detalles aquí -->
+            </div>
+
+            <!-- Recomendaciones -->
+            <h3 class="text-2xl font-bold mb-6 border-b pb-2">También te podría gustar</h3>
+            <div id="recommendations-list" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- JS rellena recomendaciones -->
+            </div>
+        </div>
+
+        <!-- VISTA 3: LOGIN -->
+        <div id="view-login" class="hidden fade-in min-h-[80vh] flex items-center justify-center bg-gray-100">
+            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+                <div class="text-center mb-8">
+                    <i class="fa-solid fa-circle-user text-6xl text-indigo-600 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">Bienvenido de nuevo</h2>
+                    <p class="text-gray-500 text-sm">Ingresa a tu cuenta para gestionar pedidos</p>
+                </div>
+                <form onsubmit="handleLogin(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                        <input type="email" required class="w-full px-4 py-3 rounded-lg border focus:border-indigo-500 focus:outline-none bg-gray-50" placeholder="ejemplo@correo.com">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+                        <input type="password" required class="w-full px-4 py-3 rounded-lg border focus:border-indigo-500 focus:outline-none bg-gray-50" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition shadow-lg transform hover:scale-[1.02]">
+                        Iniciar Sesión
+                    </button>
+                </form>
+                <div class="mt-6 text-center text-sm">
+                    <a href="#" class="text-gray-500 hover:text-indigo-600">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <h4 class="text-xl font-bold mb-4">ModaIBERO</h4>
+                <p class="text-gray-400 text-sm">Tu destino número uno para la moda online. Calidad y estilo en cada prenda.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
+                <ul class="text-gray-400 text-sm space-y-2">
+                    <li><a href="#" class="hover:text-white">Sobre Nosotros</a></li>
+                    <li><a href="#" class="hover:text-white">Política de Envíos</a></li>
+                    <li><a href="#" class="hover:text-white">Devoluciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-4">Síguenos</h4>
+                <div class="space-x-4 text-xl">
+                    <a href="https://www.instagram.com" class="hover:text-indigo-400" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" class="hover:text-indigo-400" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com" class="hover:text-indigo-400" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com" class="hover:text-indigo-400" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CARRITO -->
+    <div id="cart-modal" class="fixed inset-0 z-50 invisible cart-overlay">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute right-0 top-0 h-full w-full md:w-96 bg-white shadow-2xl cart-sidebar flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <h3 class="text-xl font-bold text-gray-800">Tu Carrito</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+            <div class="p-6 border-t bg-gray-50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-600 font-semibold">Total:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-indigo-600">$0</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script src="script.js"></script>
+    
+</body>
+</html>

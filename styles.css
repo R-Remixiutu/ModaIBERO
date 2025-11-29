@@ -1,0 +1,20 @@
+/* styles.css - extraído desde index.html */
+
+body { font-family: 'Poppins', sans-serif; }
+
+/* Animaciones */
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Carrito */
+.cart-overlay { transition: opacity 0.3s ease, visibility 0.3s; }
+.cart-sidebar { transition: transform 0.3s ease; transform: translateX(100%); }
+.cart-open .cart-overlay { opacity: 1; visibility: visible; }
+.cart-open .cart-sidebar { transform: translateX(0); }
+
+/* Hover cards */
+.product-card { transition: all 0.3s ease; cursor: pointer; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
