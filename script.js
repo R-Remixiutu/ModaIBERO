@@ -1,8 +1,5 @@
-// script.js - extraído desde index.html
-
-// --- DATOS ---
 const products = [
-    // Precios ya en COP (ej. 99.900 -> 99900)
+
     { id: 1, name: "Camiseta Blanca", price: 99900, image: "https://www.gef.co/cdn/shop/files/hercules-blanco-900-13310_000900-1.jpg?v=1736883355&width=1000", description: "Algodón 100% orgánico, corte regular fit perfecto para cualquier ocasión." },
     { id: 2, name: "Chaqueta Denim", price: 299900, image: "https://static2.goldengoose.com/public/Style/ECOMM/GMP00284.P000621-50100-2.jpg", description: "Estilo vintage con un toque moderno, ideal para climas frescos." },
     { id: 3, name: "Tennis Running ", price: 499900, image: "https://assets.adidas.com/images/w_600,f_auto,q_auto/b4e8b77e1c3c4688b8d4f82e82bee1cc_9366/Tenis_de_Running_Runfalcon_5_Rojo_JI0877_01_00_standard.jpg", description: "Suela de alto impacto y tejido transpirable para corredores exigentes." },
@@ -15,40 +12,30 @@ const products = [
 
 let cart = [];
 
-// --- CONFIG: conversión de USD a COP ---
-// Cambia este valor si quieres una tasa distinta. Ejemplo: 1 USD = 4300 COP
 const USD_TO_COP = 4300;
 
-// Convierte cantidad en USD a COP (entero)
 function toCOP(usd) {
-    // Convertir USD a COP y redondear al múltiplo de 100 más cercano.
     const amount = usd * USD_TO_COP;
-    // Dividimos por 100, redondeamos y multiplicamos por 100 para obtener múltiplos de 100
     return Math.round(amount / 100) * 100;
 }
 
-// Formatea una cantidad en COP para mostrar en UI: $12.000
 function formatCOP(amountCOP) {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amountCOP);
 }
 
-// --- SISTEMA DE PÁGINAS ---
 function showPage(pageId) {
-    // Ocultar todas las vistas
+
     document.getElementById('view-home').classList.add('hidden');
     document.getElementById('view-details').classList.add('hidden');
     document.getElementById('view-login').classList.add('hidden');
     
-    // Mostrar la seleccionada
     if(pageId === 'home') document.getElementById('view-home').classList.remove('hidden');
     if(pageId === 'details') document.getElementById('view-details').classList.remove('hidden');
     if(pageId === 'login') document.getElementById('view-login').classList.remove('hidden');
     
-    // Scroll arriba
     window.scrollTo(0, 0);
 }
 
-// --- RENDERIZADO ---
 function renderProducts() {
     const list = document.getElementById('product-list');
     list.innerHTML = products.map(p => `
@@ -72,11 +59,9 @@ function renderProducts() {
     `).join('');
 }
 
-// --- DETALLES DE PRODUCTO ---
 function openProductDetails(id) {
     const product = products.find(p => p.id === id);
     
-    // Llenar info principal
     const detailContainer = document.getElementById('detail-content');
     detailContainer.innerHTML = `
         <div class="h-96 rounded-2xl overflow-hidden shadow-xl">
@@ -101,7 +86,6 @@ function openProductDetails(id) {
         </div>
     `;
 
-    // Llenar recomendaciones (3 productos random que no sean el actual)
     const recommendations = products.filter(p => p.id !== id).sort(() => 0.5 - Math.random()).slice(0, 3);
     document.getElementById('recommendations-list').innerHTML = recommendations.map(p => `
         <div onclick="openProductDetails(${p.id})" class="cursor-pointer bg-white rounded-lg shadow p-4 hover:shadow-lg transition flex gap-4 items-center">
@@ -116,7 +100,6 @@ function openProductDetails(id) {
     showPage('details');
 }
 
-// --- LOGIN ---
 function handleLogin(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
@@ -132,15 +115,13 @@ function handleLogin(e) {
     }, 1000);
 }
 
-// --- CARRITO (Lógica igual a la anterior pero optimizada) ---
 function addToCart(id) {
     const product = products.find(p => p.id === id);
     const existing = cart.find(i => i.id === id);
     if (existing) existing.quantity++;
     else cart.push({ ...product, quantity: 1 });
     updateCartUI();
-    
-    // Animación visual botón carrito
+
     const cartBtn = document.querySelector('.fa-cart-shopping').parentElement;
     cartBtn.classList.add('scale-110', 'text-indigo-600');
     setTimeout(() => cartBtn.classList.remove('scale-110', 'text-indigo-600'), 200);
@@ -195,5 +176,5 @@ function checkout() {
     toggleCart();
 }
 
-// Inicializar
 renderProducts();
+
